@@ -35,7 +35,9 @@
           >
             <div class="mb-3 mb-md-0">
                 <h2>Doctors</h2><br>
-                <a href="/docsign" class="btn main_btn">Register as a Doctor</a>
+                <% if(!locals.user){ %>
+                <%- `<a href="/docsign" class="btn main_btn">Register as a Doctor</a>` %>
+                <% } %>
             </div>
           </div>
         </div>

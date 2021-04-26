@@ -70,106 +70,20 @@
 <!--================ appointment Area Starts =================-->
 <section class="appointment-area area-padding-top">
     <div class="container">
-
-        <!-- <div class="appointment-inner">
-            <div class="row">
-                <div class="col-sm-12 col-lg-5 offset-lg-1">
-                    <h3>Have Some Questions?</h3>
-                    <div class="accordion" id="accordionExample">
-
-                        <div class="card">
-                            <div class="card-header" id="headingOne">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        God male gathering them it female which green cattle?
-                                    </button>
-
-                                </h5>
-                            </div>
-
-                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                <div class="card-body">
-                                    Great day without sixth a lesser beginning. Their thing abundantly air moving saw fruitful lesser god. Sea abundantly blessed life set. Land. Lights divided man in deep in open upon.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-header" id="headingTwo">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Moving creepeth moved upon man grass two days?
-                                    </button>
-                                </h5>
-                            </div>
-                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                <div class="card-body">
-                                    Great day without sixth a lesser beginning. Their thing abundantly air moving saw fruitful lesser god. Sea abundantly blessed life set. Land. Lights divided man in deep in open upon.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-header" id="headingThree">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        God male gathering them it female which green cattle?
-                                    </button>
-                                </h5>
-                            </div>
-                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                <div class="card-body">
-                                    Great day without sixth a lesser beginning. Their thing abundantly air moving saw fruitful lesser god. Sea abundantly blessed life set. Land. Lights divided man in deep in open upon.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-header" id="headingFour">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                        Saw isn't likeness beginning yielding land days she?
-                                    </button>
-                                </h5>
-                            </div>
-                            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-                                <div class="card-body">
-                                    Great day without sixth a lesser beginning. Their thing abundantly air moving saw fruitful lesser god. Sea abundantly blessed life set. Land. Lights divided man in deep in open upon.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-header" id="headingFive">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                        Saw isn't likeness beginning yielding land days she?
-                                    </button>
-                                </h5>
-                            </div>
-                            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
-                                <div class="card-body">
-                                    Great day without sixth a lesser beginning. Their thing abundantly air moving saw fruitful lesser god. Sea abundantly blessed life set. Land. Lights divided man in deep in open upon.
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div> -->
                 <div class="col-lg-5">
                     <div class="appointment-form">
-                        <form action="#">
+                        <form action="/login" method="POST">
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="email" placeholder="Your Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email'" required> 
+                                <input type="email" name="email" placeholder="Your Email" required> 
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="password" placeholder="Enter Password" required>
+                                <input type="password" name="pswd" placeholder="Enter Password" required>
                             </div>
-                            <input type="checkbox" value="loginasadoctor" style="width: 3%; height: 12px;" required> Login as a Doctor
+                            <input type="checkbox" name="isdoctor" value="doctor" style="width: 3%; height: 12px;"> Login as a Doctor
                             <br><br>
-                            <a href="#" class="main_btn">login</a>
+                            <input type="submit" name="submit" value="register">
                         </form>
                     </div>
                 </div>

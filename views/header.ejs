@@ -37,6 +37,13 @@
                             <li class="nav-item"><a class="nav-link" href="/doctors">Doctors</a></li>
                             <!-- <li class="nav-item"><a class="nav-link" href="/about">About</a></li> -->
                             <!-- <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>   -->
+                            <% if(locals.type){ %>
+                                <% if(type == 'doctor') { %>
+                                <li class="nav-item"><a class="nav-link" href="/app_req">Appointment</a></li> 
+                            <% }else{ %>
+                                <li class="nav-item"><a class="nav-link" href="/appointment">Appointment</a></li>
+                                <% } %>
+                            <% } %>
                             <% if(!(locals.user)){ %>
                                 <li class="nav-item"><a class="nav-link" href="/login">Login</a></li> 
                             <% }else{ %>

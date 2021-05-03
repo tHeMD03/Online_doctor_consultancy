@@ -2,6 +2,7 @@ module.exports = function(app){
 
     const bodyParser = require('body-parser');
     const mongoose = require('mongoose');
+    const bcrypt = require('bcrypt');
     var urlencodedparser = bodyParser.urlencoded({extended: false});
     const alert = require('alert');
 
@@ -17,7 +18,8 @@ module.exports = function(app){
         lname: String,
         email: {
             type: String,
-            required: true
+            required: true,
+            unique: true
         },
         mobile: Number,
         pswd: String,
@@ -96,7 +98,8 @@ module.exports = function(app){
                     alert("User Not Registerd !! please register first.");
                     res.redirect('/usignup');
                 }else{
-                    if(results[0].email === req.body.email && results[0].pswd === req.body.pswd){
+                    // const user_password = bcrypt.hashSync(req.body.pswd, 10);
+                    if(results[0].email === req.body.email && bcrypt.compareSync(req.body.pswd, results[0].pswd)){
                         alert("LogIn successful !!");
                         req.session.userName = results[0].fname;
                         req.session.userType = 'patient';
@@ -120,12 +123,13 @@ module.exports = function(app){
         console.log(req.body);
         const insertData = async () => {
             try{
+                const password = bcrypt.hashSync(req.body.confpswd, 10);
                 const data = new Signupdata({
                     fname: req.body.fname,
                     lname: req.body.lname,
                     email: req.body.email,
                     mobile: req.body.mobile,
-                    pswd: req.body.confpswd,
+                    pswd: password,
                     pincode: req.body.pincode,
                     address: req.body.address,
                 });
@@ -153,7 +157,7 @@ module.exports = function(app){
 					speciality: req.body.speciality,
                     email: req.body.email,
                     mobile: req.body.mobile,
-                    pswd: req.body.confpswd,
+                    pswd: bcrypt.hashSync(req.body.confpswd, 10),
                     pincode: req.body.pincode,
                     address: req.body.address,
                 });

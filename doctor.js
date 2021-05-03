@@ -2,6 +2,7 @@ module.exports = function(app){
 
 	const bodyParser = require('body-parser');
 	const mongoose = require('mongoose');
+	const bcrypt = require('bcrypt');
 	var urlencodedparser = bodyParser.urlencoded({extended: false});
 
 	var symptom1 = ['acidity', 'back_pain', 'bladder_discomfort', 'breathlessness', 'burning_micturition', 'chills', 'continuous_sneezing', 'cough', 'cramps', 'fatigue', 'headache', 'high_fever', 'indigestion', 'itching', 'joint_pain', 'mood_swings', 'muscle_wasting', 'muscle_weakness', 'neck_pain', 'patches_in_throat', 'pus_filled_pimples', 'shivering', 'skin_rash', 'stiff_neck', 'stomach_pain', 'sunken_eyes', 'vomiting', 'weakness_in_limbs', 'weight_gain', 'yellowish_skin']

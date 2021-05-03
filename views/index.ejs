@@ -41,70 +41,74 @@
               given gathering great in whose you'll greater let livein form
               beast sinthete better together these place absolute right.
             </p>
-            <div id="pred" class="alert alert-danger" role="alert"></div>
+            <div id="pred" role="alert"></div>
             <div class="form-group"></div>
-            <div class="create-blog content">
-              <select
-                id="symptom1"
-                class="form-select"
-                aria-label="Default select example"
-              >
-                <option selected>Select Primary Symptom</option>
-                <% for(i=0;i<(symptom1.length);i++) { %>
-                <option value="<%= i %>"><%= symptom1[i] %></option>
-                <% }; %></select
-              ><br />
-              <select
-                id="symptom2"
-                class="form-select mt-10"
-                aria-label="Default select example"
-              >
-                <option selected>Select Secondary Symptom</option>
-                <% for(i=0;i<(symptom2.length);i++) { %>
-                <option value="<%= i %>"><%= symptom2[i] %></option>
-                <% }; %></select
-              ><br />
-              <select
-                id="symptom3"
-                class="form-select mt-10"
-                aria-label="Default select example"
-              >
-                <option selected>Select Third Symptom</option>
-                <% for(i=0;i<(symptom3.length);i++) { %>
-                <option value="<%= i %>"><%= symptom3[i] %></option>
-                <% }; %></select
-              ><br />
-              <!-- <input type="text" placeholder="Enter disease"> -->
-              <button class="main btn btn-primary mt-10" onclick="Submit()">
-                Diagnos Symptoms
-              </button>
-              <script>
-                function Submit() {
-                  var s3 = document.getElementById("symptom3").value;
-                  var s2 = document.getElementById("symptom2").value;
-                  var s1 = document.getElementById("symptom1").value;
-                  var data = { symptom1: s1, symptom2: s2, symptom3: s3 };
-                  console.log(data);
-                  var result = document.getElementById("pred");
-                  fetch("http://127.0.0.1:8000/predict", {
-                    method: "POST",
-                    body: JSON.stringify(data),
-                  })
-                    .then((response) => response.json())
-                    .then((data) => {
-                      console.log(data.prediction);
-                      result.innerHTML =
-                        "You have <b style='color:red'>" +
-                        data.prediction +
-                        "</b>";
+            <% if(locals.type){ %>
+              <% if(type != 'doctor'){ %>
+              <div class="create-blog content">
+                <select
+                  id="symptom1"
+                  class="form-select"
+                  aria-label="Default select example"
+                >
+                  <option selected>Select Primary Symptom</option>
+                  <% for(i=0;i<(symptom1.length);i++) { %>
+                  <option value="<%= i %>"><%= symptom1[i] %></option>
+                  <% }; %></select
+                ><br />
+                <select
+                  id="symptom2"
+                  class="form-select mt-10"
+                  aria-label="Default select example"
+                >
+                  <option selected>Select Secondary Symptom</option>
+                  <% for(i=0;i<(symptom2.length);i++) { %>
+                  <option value="<%= i %>"><%= symptom2[i] %></option>
+                  <% }; %></select
+                ><br />
+                <select
+                  id="symptom3"
+                  class="form-select mt-10"
+                  aria-label="Default select example"
+                >
+                  <option selected>Select Third Symptom</option>
+                  <% for(i=0;i<(symptom3.length);i++) { %>
+                  <option value="<%= i %>"><%= symptom3[i] %></option>
+                  <% }; %></select
+                ><br />
+                <!-- <input type="text" placeholder="Enter disease"> -->
+                <button class="main btn btn-primary mt-10" onclick="Submit()">
+                  Diagnos Symptoms
+                </button>
+                <script>
+                  function Submit() {
+                    var s3 = document.getElementById("symptom3").value;
+                    var s2 = document.getElementById("symptom2").value;
+                    var s1 = document.getElementById("symptom1").value;
+                    var data = { symptom1: s1, symptom2: s2, symptom3: s3 };
+                    console.log(data);
+                    var result = document.getElementById("pred");
+                    fetch("http://127.0.0.1:8000/predict", {
+                      method: "POST",
+                      body: JSON.stringify(data),
                     })
-                    .catch((error) => {
-                      console.log(error);
-                    });
-                }
-              </script>
-            </div>
-
+                      .then((response) => response.json())
+                      .then((data) => {
+                        console.log(data.prediction);
+                        result.innerHTML =
+                          "You have <b style='color:red'>" +
+                          data.prediction +
+                          "</b>";
+                      })
+                      .catch((error) => {
+                        console.log(error);
+                      });
+                  }
+                </script>
+              </div>  
+              <% } %>
+            <% } %>
+            
             <!-- <a href="" class="main_btn_light">View Department</a> -->
           </div>
         </div>

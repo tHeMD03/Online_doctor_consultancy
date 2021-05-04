@@ -39,21 +39,19 @@
                     <tr>
                         <th>Sr.</th>
                         <th>Name</th>
+                        <th>Doctor Email</th>
                         <th>Email</th>
                         <th>Mobile</th>
                         <th>Date</th>
-                        <th></th>
-                        <th></th>
                     </tr>
                     <% for(i=0; i < (results.length); i++){ %>
                         <tr>
                             <td><%= i+1 %></td>
                             <td><%= results[i].fullname %></td>
+                            <td><%= results[i].docemail %></td>
                             <td><%= results[i].email %></td>
                             <td><%= results[i].mobile %></td>
                             <td><%= results[i].date %></td>
-                            <td> <a href='/accept' class="main_btn">Accept</a> </td>
-                            <td> <a href='/reject' class="main_btn">Reject</a> </td>
                         </tr>
                     <% }; %> 
                 </table>

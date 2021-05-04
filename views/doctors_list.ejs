@@ -16,6 +16,17 @@
     <!-- main css -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        th td{
+            font-size: large;
+            text-align: center;
+        }
+        th, tr{
+            border-bottom: 2px solid black;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -41,25 +52,28 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Mobile</th>
-                        <th>Date</th>
-                        <th></th>
+                        <th>Qualificaton</th>
+                        <th>Speciality</th>
+                        <th>address</th>
                         <th></th>
                     </tr>
                     <% for(i=0; i < (results.length); i++){ %>
                         <tr>
                             <td><%= i+1 %></td>
-                            <td><%= results[i].fullname %></td>
+                            <td>Dr. <%= results[i].fname %></td>
                             <td><%= results[i].email %></td>
                             <td><%= results[i].mobile %></td>
-                            <td><%= results[i].date %></td>
-                            <td> <a href='/accept' class="main_btn">Accept</a> </td>
-                            <td> <a href='/reject' class="main_btn">Reject</a> </td>
+                            <td><%= results[i].qualification %></td>
+                            <td><%= results[i].speciality %></td>
+                            <td><%= results[i].address %></td>
+                            <td> <a href='/appointment?docemail=<%= results[i].email %>' class="main_btn">Book Appointment</a> </td>
                         </tr>
                     <% }; %> 
                 </table>
             <% }else{ %>
-                <div style="width: 100%; color: red; border: 2px solid red; border-radius: 5px;">You don't have any pending appointment.</div>
+                <div style="width: 100%; color: red; border: 2px solid red; border-radius: 5px;">No Doctors Found in your area.</div>
             <% } %>
+            
         </div>
     </section>
     <!--================ Team section end =================-->  

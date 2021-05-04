@@ -30,10 +30,38 @@ app.use('/js', express.static('js'));
 app.use('/fonts', express.static('fonts'));
 app.use('/Medcare Medical -doc', express.static('Medcare Medical -doc'));
 
+const docSchema = mongoose.Schema({
+	fname: {
+		type: String,
+		required: true
+	},
+	lname: String,
+	qualification: String,
+	speciality: String,
+	email: String,
+	mobile: String,
+	pswd: String,
+	pincode: Number,
+	address: String,
+	usertype: {
+		type: String,
+		default: 'doctor'},
+	verified: {
+		type: Boolean,
+		default: undefined
+	},
+	date: {
+		type: Date,
+		default: Date.now
+	}
+});
+
+const Docdata = new mongoose.model("Docdata", docSchema);
+
 
 doctor(app);
-log_sign(app);
-appointment(app);
+log_sign(app, docSchema, Docdata);
+appointment(app, docSchema, Docdata);
 
 app.get('/', function(req, res){
 	var symptom1 = ['acidity', 'back_pain', 'bladder_discomfort', 'breathlessness', 'burning_micturition', 'chills', 'continuous_sneezing', 'cough', 'cramps', 'fatigue', 'headache', 'high_fever', 'indigestion', 'itching', 'joint_pain', 'mood_swings', 'muscle_wasting', 'muscle_weakness', 'neck_pain', 'patches_in_throat', 'pus_filled_pimples', 'shivering', 'skin_rash', 'stiff_neck', 'stomach_pain', 'sunken_eyes', 'vomiting', 'weakness_in_limbs', 'weight_gain', 'yellowish_skin']

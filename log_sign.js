@@ -1,4 +1,4 @@
-module.exports = function(app){
+module.exports = function(app, docSchema, Docdata){
 
     const bodyParser = require('body-parser');
     const mongoose = require('mongoose');
@@ -34,34 +34,34 @@ module.exports = function(app){
         }
     });
 
-    const docSchema = mongoose.Schema({
-		fname: {
-			type: String,
-			required: true
-		},
-		lname: String,
-		qualification: String,
-		speciality: String,
-		email: String,
-		mobile: String,
-		pswd: String,
-		pincode: Number,
-		address: String,
-        usertype: {
-            type: String,
-            default: 'doctor'},
-		verified: {
-			type: Boolean,
-			default: undefined
-		},
-		date: {
-            type: Date,
-            default: Date.now
-        }
-	});
+    // const docSchema = mongoose.Schema({
+	// 	fname: {
+	// 		type: String,
+	// 		required: true
+	// 	},
+	// 	lname: String,
+	// 	qualification: String,
+	// 	speciality: String,
+	// 	email: String,
+	// 	mobile: String,
+	// 	pswd: String,
+	// 	pincode: Number,
+	// 	address: String,
+    //     usertype: {
+    //         type: String,
+    //         default: 'doctor'},
+	// 	verified: {
+	// 		type: Boolean,
+	// 		default: undefined
+	// 	},
+	// 	date: {
+    //         type: Date,
+    //         default: Date.now
+    //     }
+	// });
 
     const Signupdata = new mongoose.model("Signupdata", signupSchema);
-    const Docdata = new mongoose.model("Docdata", docSchema);
+    // const Docdata = new mongoose.model("Docdata", docSchema);
 
     app.get('/login', function(req, res){
         res.render('login');
@@ -77,10 +77,12 @@ module.exports = function(app){
                     alert("User Not Registerd !! please register first.");
                     res.redirect('/doc_signup');
                 }else{
-                    if(results[0].email === req.body.email && results[0].pswd === req.body.pswd){
+                    if(results[0].email === req.body.email && bcrypt.compareSync(req.body.pswd, results[0].pswd)){
                         alert("LogIn successful !!");
                         req.session.userName = results[0].fname;
                         req.session.userType = 'doctor';
+                        req.session.pincode = results[0].pincode;
+                        req.session.email = results[0].email;
                         res.render('index', {user: req.session.userName, type: req.session.userType, symptom1: symptom1,symptom2: symptom2,symptom3: symptom3});
                     }else{
                         alert("Invalid username or password");
@@ -102,7 +104,9 @@ module.exports = function(app){
                     if(results[0].email === req.body.email && bcrypt.compareSync(req.body.pswd, results[0].pswd)){
                         alert("LogIn successful !!");
                         req.session.userName = results[0].fname;
+                        req.session.email = results[0].email;
                         req.session.userType = 'patient';
+                        req.session.pincode = results[0].pincode;
                         res.render('index', {user: req.session.userName, type: req.session.userType, symptom1: symptom1, symptom2: symptom2, symptom3: symptom3});
                     }else{
                         alert("Invalid username or password");
@@ -143,7 +147,7 @@ module.exports = function(app){
         }
 
         insertData();
-        res.redirect('/');
+        res.redirect('/login');
     });
 
     app.post('/docsign', urlencodedparser, function(req, res){
@@ -171,7 +175,7 @@ module.exports = function(app){
         }
 
         insertData();
-		res.render('index', {user: req.session.userName, type: req.session.userType,symptom1:symptom1,symptom2:symptom2,symptom3:symptom3});
+        res.redirect('/login');
 	});
 
     app.get('/logout', function(req, res){

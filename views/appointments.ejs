@@ -16,6 +16,11 @@
     <!-- main css -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <script>
+        var accept = function(id){
+            document.getElementById(id).innerHTML = 'accepted';
+        }
+    </script>
 </head>
 <body>
 
@@ -52,8 +57,8 @@
                             <td><%= results[i].email %></td>
                             <td><%= results[i].mobile %></td>
                             <td><%= results[i].date %></td>
-                            <td> <a href='/accept' class="main_btn">Accept</a> </td>
-                            <td> <a href='/reject' class="main_btn">Reject</a> </td>
+                            <td> <a href='#' onclick="accept(this.id)" id="accept<%= i %>" class="main_btn accept">Accept</a> </td>
+                            <td> <a href='/reject?id=<%= results[i]._id %>' class="main_btn">Reject</a> </td>
                         </tr>
                     <% }; %> 
                 </table>

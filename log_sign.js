@@ -75,7 +75,7 @@ module.exports = function(app, docSchema, Docdata){
                 console.log(results);
                 if(results.length == 0){
                     alert("User Not Registerd !! please register first.");
-                    res.redirect('/doc_signup');
+                    res.redirect('/docsign');
                 }else{
                     if(results[0].email === req.body.email && bcrypt.compareSync(req.body.pswd, results[0].pswd)){
                         alert("LogIn successful !!");

@@ -6,6 +6,7 @@ const alert = require('alert');
 var session = require('express-session');
 
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 
 mongoose.connect("mongodb://localhost:27017/ODC_db", {useNewUrlParser: true, useUnifiedTopology: true})
     .then( () => console.log('Connection Successful'))
@@ -17,9 +18,12 @@ app.set('view engine', 'ejs');
 
 app.use(session({
 	secret: 'a1b2c3d4',
+	cookie: {maxAge: 1000 * 60 * 60 * 24},
 	resave: false,
 	saveUninitialized: true
 }))
+
+app.use(cookieParser());
 
 app.use('/css', express.static('css'));
 app.use('/scss', express.static('scss'));
